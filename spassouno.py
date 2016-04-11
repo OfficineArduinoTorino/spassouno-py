@@ -5,6 +5,7 @@
 import time
 import shutil
 import logging
+import os
 
 from camera_manager import Camera
 from session_manager import SessionManager
@@ -107,8 +108,6 @@ class SpassoUno(object):
 
         self._camera.capture_to_file(filename)
 
-        self.__show_frame(filename)
-
     def __inc_prev_speed(self):
         if int(self._frame_delay * self.INCR_MUL) > int(self.DELAY_INCR_STEP * self.INCR_MUL):
             self._frame_delay -= self.DELAY_INCR_STEP
@@ -123,7 +122,11 @@ class SpassoUno(object):
         self._periodic_thread.change_period(self._frame_delay)
 
     def __delete_last_frame(self):
-        print "__deleteLastFrame"
+        print "deleting {0}".format(self._session_manager.current_session.current_file)
+        if self._session_manager.current_session.current_file != '' and \
+                os.path.isfile(self._session_manager.current_session.current_file):
+            os.unlink(self._session_manager.current_session.current_file)
+            self._session_manager.current_session.dec_counter()
 
     def __make_video(self):
         print "__makeVideo"
@@ -164,6 +167,6 @@ class SpassoUno(object):
 
 
 if __name__ == '__main__':
-    spasso1 = SpassoUno(SessionManager(), Camera(), PeriodicThread())
+    spasso1 = SpassoUno(SessionManager(), Camera(), PeriodicThread(period=1.5))
     spasso1.run()
     spasso1.cleanup()
