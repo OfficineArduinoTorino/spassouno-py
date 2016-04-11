@@ -12,7 +12,8 @@ class SessionManager(object):
 
     @property
     def current_session(self):
-        return self._sessions[self._session_index]
+        cur_session = self._sessions[self._session_index]
+        return cur_session
 
     def reset_cur_session(self):
         sess_id = self._sessions[self._session_index].session_id
