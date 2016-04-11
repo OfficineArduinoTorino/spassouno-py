@@ -29,7 +29,7 @@ class Camera(object):
         self._camera.image_effect = 'none'
 
         self._camera.rotation = 0
-        self._camera.hflip = True
+        self._camera.hflip = False
         self._camera.vflip = False
 
         self._screen_w = self._camera.resolution[0] / 2
