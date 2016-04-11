@@ -51,8 +51,10 @@ class Session(object):
         if self._session_iterator is None:
             files = glob.glob(self._relative_path + '/*.jpg')
             if len(files) > 0:
+                files = sorted(files, key=self.__getint)
                 self._session_iterator = cycle(files)
 
         return self._session_iterator
 
-
+    def __getint(self, item):
+        return int(item.split('_')[1].split('.')[0])
