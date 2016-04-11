@@ -51,7 +51,6 @@ class Session(object):
         if self._session_iterator is None:
             files = glob.glob(self._relative_path + '/*.jpg')
             if len(files) > 0:
-                files.sort()
                 self._session_iterator = cycle(files)
 
         return self._session_iterator
