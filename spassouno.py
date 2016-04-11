@@ -96,7 +96,7 @@ class SpassoUno(object):
             self._functions[key]()
 
     def __quit_app(self):
-        #self.__delete_cur_session()
+        self.__delete_cur_session()
         self._is_running = False
 
     def __capture_frame(self):
