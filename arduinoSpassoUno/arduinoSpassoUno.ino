@@ -21,6 +21,8 @@ int speedDown = 10;
 int newStory = 11;
 int deleteLastFrame = 12;
 
+int timeDelay = 200;
+
 
 void setup() {
 
@@ -44,48 +46,51 @@ void loop() {
   int stateNewStory = digitalRead(newStory);
   int stateDeleteLastFrame = digitalRead(deleteLastFrame);
 
-  Serial.println(stateSpeedUp);
 
-
-  if (stateNewFrame == 1) {
+   if (stateNewFrame == 1) {
     tone(6, 20);
+    Keyboard.press(' ');
+    delay(2);
+    Keyboard.release(' ');
+    delay(timeDelay);
+   /*
     #define SPACE (0x20)
     Keyboard.press(SPACE);
     Keyboard.release(SPACE);
-    delay(10000);
+  */
+    
     noTone(6);
   }
   else if (stateSpeedUp == 1) {
     tone(6, 200);
     Keyboard.press(KEY_UP_ARROW);
-    delay(200);
     Keyboard.release(KEY_UP_ARROW);
+    delay(timeDelay);
     noTone(6);
   }
 
   else if (stateSpeedDown == 1) {
+
     tone(6, 200);
-    Keyboard.press(KEY_UP_ARROW);
-    delay(200);
-    Keyboard.release(KEY_UP_ARROW);
-    delay(200);
+    Keyboard.press(KEY_DOWN_ARROW);
+    Keyboard.release(KEY_DOWN_ARROW);
+    delay(timeDelay);
     noTone(6);
+
   }
   else if (stateNewStory == 1) {
     tone(6, 20);
-    Keyboard.print("d");
-    delay(500);
+    Keyboard.press('d');
+    Keyboard.release('d');
+    delay(timeDelay);
     noTone(6);
-    delay(10000);
-    
   }
   else if (stateDeleteLastFrame == 1) {
     tone(6, 20);
-    Keyboard.print("x");
-    delay(500);
+    Keyboard.press('x');
+    Keyboard.release('d');
+    delay(timeDelay);
     noTone(6);
-    delay(3000);
-    
   }
 
   delay(10);
