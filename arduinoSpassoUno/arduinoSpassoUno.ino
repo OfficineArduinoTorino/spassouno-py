@@ -14,29 +14,21 @@
 */
 
 #include "Keyboard.h"
-
 int newFrame = 8;
 int speedUp = 9;
 int speedDown = 10;
 int newStory = 11;
 int deleteLastFrame = 12;
-
-int timeDelay = 200;
-
+int timeDelay = 400;
 
 void setup() {
-
-  Serial.begin(9600);
-
   pinMode(newFrame, INPUT);
   pinMode(speedUp, INPUT);
   pinMode(speedDown, INPUT);
   pinMode(newStory, INPUT);
   pinMode(deleteLastFrame, INPUT);
-
   Keyboard.begin();
 }
-
 
 void loop() {
 
@@ -46,23 +38,14 @@ void loop() {
   int stateNewStory = digitalRead(newStory);
   int stateDeleteLastFrame = digitalRead(deleteLastFrame);
 
-
-   if (stateNewFrame == 1) {
-    tone(6, 20);
-    Keyboard.press(' ');
-    delay(2);
-    Keyboard.release(' ');
-    delay(timeDelay);
-   /*
-    #define SPACE (0x20)
-    Keyboard.press(SPACE);
-    Keyboard.release(SPACE);
-  */
-    
+  if (stateNewFrame == 1) {
+    tone(6, 900);
+    Keyboard.print(' ');
+    delay(2000);
     noTone(6);
   }
   else if (stateSpeedUp == 1) {
-    tone(6, 200);
+    tone(6, 900);
     Keyboard.press(KEY_UP_ARROW);
     Keyboard.release(KEY_UP_ARROW);
     delay(timeDelay);
@@ -70,29 +53,24 @@ void loop() {
   }
 
   else if (stateSpeedDown == 1) {
-
-    tone(6, 200);
+    tone(6, 900);
     Keyboard.press(KEY_DOWN_ARROW);
     Keyboard.release(KEY_DOWN_ARROW);
     delay(timeDelay);
     noTone(6);
-
   }
   else if (stateNewStory == 1) {
-    tone(6, 20);
-    Keyboard.press('d');
-    Keyboard.release('d');
+    tone(6, 900);
+    Keyboard.print('d');
     delay(timeDelay);
     noTone(6);
   }
   else if (stateDeleteLastFrame == 1) {
-    tone(6, 20);
-    Keyboard.press('x');
-    Keyboard.release('d');
+    tone(6, 900);
+    Keyboard.print('x');
     delay(timeDelay);
     noTone(6);
   }
-
   delay(10);
 }
 
