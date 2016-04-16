@@ -1,31 +1,12 @@
 #(S)passoUno
 
-[Github.com/OfficineArduinoTorino/spassouno-py](https://github.com/OfficineArduinoTorino/spassouno-py)
+[github.com/OfficineArduinoTorino/spassouno-py](https://github.com/OfficineArduinoTorino/spassouno-py)
 
 ![SpassoUno](http://tongatron.it/img/spassuno-preview.png)
 
-Usando uno speciale tavolo da riprese per creare cortometraggi animati con la tecnica dell’animazione stop-motion. 
+Uno speciale tavolo da riprese per creare cortometraggi animati con la tecnica dell’animazione stop-motion. 
 
 (S)passoUno è basato su Python 2.7 e testato su Raspberry Pi 3 con distribuzione Minibian "Jessie".
-
-##Interfaccia e comandi
-Interfaccia kids:
-![SpassoUno](http://tongatron.it/img/spassouno-interfaccia.png)
-
-TASTIERA | INTERFACCIA KIDS | FUNZIONE
------------- | ------------- | -------------
-SPACE_KEY | Aggiungi fotogramma| Take a snapshot
-DOWN_KEY | Dominuisci velocità| Accelerate preview
-UP_KEY | Aumenta velocità| Decelerate preview
-D_KEY | Nuova storia| Delete session (new session)
-X_KEY | Cancella ultimo fotogramma| Delete a frame
-M_KEY || Make video (not implemented)
-G_KEY || Make animated GIF (not implemented)
-Q_KEY || Quit
-F_KEY || Toggle fullscreen
-PLUS_KEY || Zoom preview in
-MIN_KEY || Zoom preview out
-
 
 
 ##Sistema operativo
@@ -92,8 +73,6 @@ pip install picamera
 
 ##Lancia (S)passoUno!
 
-Scarica il software da qui: [github.com/vongomben/spassouno](https://github.com/vongomben/spassouno)    
-
 Posizionati nella cartella del repository:
 ```bash
 cd /opt/spassouno-py
@@ -103,6 +82,50 @@ Lancia il programma:
 python spassouno.py
 ```
 
-##Ops, qualcosa non funziona?
+####Ops, qualcosa non funziona?
 
 ![almeno ci hai provato](http://dailycentral.me/wp-content/uploads/2015/06/at-least-you-tried-656x487.png)
+
+##Interfaccia e comandi
+###Tastiera
+Di seguito i comandi che possono essere utilizzati da tastiera:
+
+TASTIERA | FUNZIONE
+------------ | -------------
+SPACE_KEY | Take a snapshot
+DOWN_KEY | Accelerate preview
+UP_KEY | Decelerate preview
+D_KEY | Delete session (new session)
+X_KEY | Delete a frame
+M_KEY | Make video (not implemented)
+G_KEY | Make animated GIF (not implemented)
+Q_KEY | Quit
+F_KEY | Toggle fullscreen
+PLUS_KEY | Zoom preview in
+MIN_KEY | Zoom preview out
+
+
+###Interfaccia Kids
+Abbiamo costruito un'interfaccia semplice e intuitiva per i bambini:
+
+
+![SpassoUno](http://tongatron.it/img/spassouno-interfaccia.png)
+
+INTERFACCIA KIDS | FUNZIONE
+------------- | -------------
+Aggiungi fotogramma| Take a snapshot
+Diminuisci velocità| Accelerate preview
+Aumenta velocità| Decelerate preview
+Nuova storia| Delete session (new session)
+Cancella ultimo fotogramma| Delete a frame
+
+Componenti:		
+- 1 genuino micro		
+- 1 Big red button	
+- 4 pulsanti arcade	
+- 1 Buzzer	
+- 5 resistenze da 10 KΩ	
+
+Circuito: [123d.circuits.io](https://123d.circuits.io/circuits/1926939-spassunouno-kids-interface)	
+Arduino sketch: [ArduinoSpassoUno.ino](https://github.com/OfficineArduinoTorino/spassouno-py/tree/master/arduinoSpassoUno)	
+Design: [Design folder](https://github.com/OfficineArduinoTorino/spassouno-py/tree/master/design)
