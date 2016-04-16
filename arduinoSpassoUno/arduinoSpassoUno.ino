@@ -9,7 +9,7 @@
   9    Aumenta velocità             UP_KEY
   11   Nuova storia                 SPACE_KEY
   12   Cancella ultimo fotogramma   X_KEY
-  6 Buzzer
+  6    Buzzer
 
 */
 
@@ -19,7 +19,8 @@ int speedUp = 9;
 int speedDown = 10;
 int newStory = 11;
 int deleteLastFrame = 12;
-int timeDelay = 400;
+int delayButtons = 400;
+int delayNewFrame = 2000;
 
 void setup() {
   pinMode(newFrame, INPUT);
@@ -48,7 +49,7 @@ void loop() {
     tone(6, 900);
     Keyboard.press(KEY_UP_ARROW);
     Keyboard.release(KEY_UP_ARROW);
-    delay(timeDelay);
+    delay(delayButtons);
     noTone(6);
   }
 
@@ -56,19 +57,19 @@ void loop() {
     tone(6, 900);
     Keyboard.press(KEY_DOWN_ARROW);
     Keyboard.release(KEY_DOWN_ARROW);
-    delay(timeDelay);
+    delay(delayButtons);
     noTone(6);
   }
   else if (stateNewStory == 1) {
     tone(6, 900);
     Keyboard.print('d');
-    delay(timeDelay);
+    delay(delayButtons);
     noTone(6);
   }
   else if (stateDeleteLastFrame == 1) {
     tone(6, 900);
     Keyboard.print('x');
-    delay(timeDelay);
+    delay(delayButtons);
     noTone(6);
   }
   delay(10);
