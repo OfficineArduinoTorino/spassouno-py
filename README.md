@@ -8,6 +8,17 @@ Uno speciale tavolo da riprese per creare cortometraggi animati con la tecnica d
 
 (S)passoUno è basato su Python 2.7 e testato su Raspberry Pi 3 con distribuzione Minibian "Jessie".
 
+Componenti (S)passoUno:		
+- Raspberry Pi 3		
+- Raspberry camera		
+
+Componenti Interfaccia Kids:		
+- 1 genuino micro		
+- 1 Big red button	
+- 4 pulsanti arcade	
+- 1 Buzzer	
+- 5 resistenze da 10 KΩ	
+
 
 ##Sistema operativo
 Scarica l'ultima versione del sistema operativo Minibian "Jessie": [minibianpi.wordpress.com/download](https://minibianpi.wordpress.com/download/)
@@ -119,12 +130,6 @@ Aumenta velocità| Decelerate preview
 Nuova storia| Delete session (new session)
 Cancella ultimo fotogramma| Delete a frame
 
-Componenti:		
-- 1 genuino micro		
-- 1 Big red button	
-- 4 pulsanti arcade	
-- 1 Buzzer	
-- 5 resistenze da 10 KΩ	
 
 Circuito: [123d.circuits.io](https://123d.circuits.io/circuits/1926939-spassunouno-kids-interface)	
 Arduino sketch: [ArduinoSpassoUno.ino](https://github.com/OfficineArduinoTorino/spassouno-py/tree/master/arduinoSpassoUno)	
