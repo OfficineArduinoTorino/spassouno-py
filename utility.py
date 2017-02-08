@@ -4,7 +4,7 @@ import sys
 import tty
 
 import socket
-
+import os
 
 def getserial():
     # Extract serial from cpuinfo file
@@ -48,3 +48,18 @@ def init_key_read():
 
 def restore_key_read(old_settings):
     termios.tcsetattr(sys.stdin, termios.TCSADRAIN, old_settings)
+
+
+def find_usb_path():
+    partitionsFile = open("/proc/partitions")
+    lines = partitionsFile.readlines()[2:]#Skips the header lines
+    for line in lines:
+        words = [x.strip() for x in line.split()]
+        minorNumber = int(words[1])
+        deviceName = words[3]
+        if minorNumber % 16 == 0:
+            path = "/sys/class/block/" + deviceName
+            if os.path.islink(path):
+                if os.path.realpath(path).find("/usb") > 0:
+                    return "/dev/%s" % deviceName
+    return None

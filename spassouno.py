@@ -9,7 +9,7 @@ import os
 
 from camera_manager import Camera
 from session_manager import SessionManager
-from utility import init_key_read, restore_key_read, read_key
+from utility import init_key_read, restore_key_read, read_key, find_usb_path
 from periodic_thread import PeriodicThread
 
 __version__ = '0.1'
@@ -129,10 +129,22 @@ class SpassoUno(object):
             self._session_manager.current_session.dec_counter()
 
     def __make_video(self):
-        print "__makeVideo"
+        usb_path=find_usb_path()
+        if not usb_path==None:
+            os.system('convert -delay 100 {0}*.jpg {1}/video.mp4'.format(\
+                self._session_manager.current_session,\
+                usb_path))
+        else:
+            print "please Insert USB Drive and Retry"
 
     def __make_animated_GIF(self):
-        print "__makeAnimatedGIF"
+        usb_path=find_usb_path()
+        if not usb_path==None:
+            os.system('convert -delay 100 -loop 0 {0}*.jpg {1}/animation.gif'.format(\
+                self._session_manager.current_session,\
+                usb_path))
+        else:
+            print "please Insert USB Drive and Retry"
 
     def __toggle_fullscreen(self):
         self._camera.fullscreen = not self._camera.fullscreen
