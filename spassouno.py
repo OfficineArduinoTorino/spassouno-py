@@ -133,7 +133,7 @@ class SpassoUno(object):
         if is_usb_plugged():
             path = os.getcwd()+"/"+self._session_manager.current_session.session_path
             num = self.session_manager.current_session._img_count;
-            filenames=[path"/frame_"+str(i+1)+".jpg" for i in range(num)]
+            filenames=[path+"/frame_"+str(i+1)+".jpg" for i in range(num)]
             with imageio.get_writer(os.getcwd()+"/animation.gif", mode='I') as writer:
                 for filename in filenames:
                     image = imageio.imread(filename)
@@ -146,7 +146,7 @@ class SpassoUno(object):
         if is_usb_plugged():
             path = os.getcwd()+"/"+self._session_manager.current_session.session_path
             num = self.session_manager.current_session._img_count;
-            filenames=[path"/frame_"+str(i+1)+".jpg" for i in range(num)]
+            filenames=[path+"/frame_"+str(i+1)+".jpg" for i in range(num)]
             with imageio.get_writer('/media/usb0/animation.gif', mode='I') as writer:
                 for filename in filenames:
                     image = imageio.imread(filename)
