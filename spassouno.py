@@ -9,7 +9,7 @@ import os
 
 from camera_manager import Camera
 from session_manager import SessionManager
-from utility import init_key_read, restore_key_read, read_key, find_usb_path
+from utility import init_key_read, restore_key_read, read_key, is_usb_plugged
 from periodic_thread import PeriodicThread
 
 __version__ = '0.1'
@@ -129,22 +129,16 @@ class SpassoUno(object):
             self._session_manager.current_session.dec_counter()
 
     def __make_video(self):
-        usb_path=find_usb_path()
-        if not usb_path==None:
-            #os.system(
-            print 'convert -delay 100 {0}/*.jpg {1}/video.mp4'.format(\
-                os.getcwd()+"/"+self._session_manager.current_session.session_path,\
-                usb_path)
+        if is_usb_plugged():
+            os.system('convert -delay 100 {0}/*.jpg /media/usb0/video.mp4'.format(\
+                os.getcwd()+"/"+self._session_manager.current_session.session_path))
         else:
             print "please Insert USB Drive and Retry"
 
     def __make_animated_GIF(self):
-        usb_path=find_usb_path()
-        if not usb_path==None:
-            #os.system(
-            print 'convert -delay 100 -loop 0 {0}/*.jpg {1}/animation.gif'.format(\
-                os.getcwd()+"/"+self._session_manager.current_session.session_path,\
-                usb_path)
+        if is_usb_plugged():
+            os.system('convert -delay 100 -loop 0 {0}/*.jpg media/usb0/animation.gif'.format(\
+                os.getcwd()+"/"+self._session_manager.current_session.session_path))
         else:
             print "please Insert USB Drive and Retry"
 

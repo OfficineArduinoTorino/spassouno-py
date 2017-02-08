@@ -50,7 +50,7 @@ def restore_key_read(old_settings):
     termios.tcsetattr(sys.stdin, termios.TCSADRAIN, old_settings)
 
 
-def find_usb_path():
+def is_usb_plugged():
     partitionsFile = open("/proc/partitions")
     lines = partitionsFile.readlines()[2:]#Skips the header lines
     for line in lines:
@@ -61,5 +61,6 @@ def find_usb_path():
             path = "/sys/class/block/" + deviceName
             if os.path.islink(path):
                 if os.path.realpath(path).find("/usb") > 0:
-                    return "/dev/%s" % deviceName
-    return None
+                    #return "/dev/%s" % deviceName
+                    return True
+    return False
