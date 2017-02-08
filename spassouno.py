@@ -134,6 +134,7 @@ class SpassoUno(object):
                 os.getcwd()+"/"+self._session_manager.current_session.session_path))
         else:
             print "please Insert USB Drive and Retry"
+        exit()
 
     def __make_animated_GIF(self):
         if is_usb_plugged():
