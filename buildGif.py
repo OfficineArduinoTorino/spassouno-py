@@ -1,14 +1,12 @@
 #!/usr/bin/env python
 
-from PIL import Image
-import sys, os
+import imageio
 
-images = []
-frameDuration = 0.5
+filenames=[]
+for i in range(2):
+	filenames.append("res/testImg/dove"+str(i+1)+".jpg")
 
-for i in range(1,3):
-	filename = "./res/testImg/dove"+str(i)+".jpg"
-	images.append(Image.open(filename))
-
-from images2gif import writeGif
-writeGif("out.gif", images, duration=frameDuration, dither=0)
+with imageio.get_writer('movie.gif', mode='I') as writer:
+    for filename in filenames:
+        image = imageio.imread(filename)
+        writer.append_data(image)

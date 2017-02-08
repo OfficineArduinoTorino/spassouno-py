@@ -11,6 +11,7 @@ from camera_manager import Camera
 from session_manager import SessionManager
 from utility import init_key_read, restore_key_read, read_key, is_usb_plugged
 from periodic_thread import PeriodicThread
+import imageio
 
 __version__ = '0.1'
 __author__ = 'Fabrizio Guglielmino'
@@ -138,8 +139,13 @@ class SpassoUno(object):
 
     def __make_animated_GIF(self):
         if is_usb_plugged():
-            os.system('convert -delay 100 -loop 0 {0}/*.jpg /media/usb0/animation.gif'.format(\
-                os.getcwd()+"/"+self._session_manager.current_session.session_path))
+            path = os.getcwd()+"/"+self._session_manager.current_session.session_path
+            num = self.session_manager.current_session._img_count;
+            filenames=[path"/frame_"+str(i+1)+".jpg" for i in range(num)]
+            with imageio.get_writer('/media/usb0/animation.gif', mode='I') as writer:
+                for filename in filenames:
+                    image = imageio.imread(filename)
+                    writer.append_data(image)
         else:
             print "please Insert USB Drive and Retry"
 
