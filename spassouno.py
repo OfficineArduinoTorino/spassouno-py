@@ -131,18 +131,20 @@ class SpassoUno(object):
     def __make_video(self):
         usb_path=find_usb_path()
         if not usb_path==None:
-            os.system('convert -delay 100 {0}/*.jpg {1}/video.mp4'.format(\
+            #os.system(
+            print 'convert -delay 100 {0}/*.jpg {1}/video.mp4'.format(\
                 os.getcwd()+"/"+self._session_manager.current_session.session_path,\
-                usb_path))
+                usb_path)
         else:
             print "please Insert USB Drive and Retry"
 
     def __make_animated_GIF(self):
         usb_path=find_usb_path()
         if not usb_path==None:
-            os.system('convert -delay 100 -loop 0 {0}/*.jpg {1}/animation.gif'.format(\
+            #os.system(
+            print 'convert -delay 100 -loop 0 {0}/*.jpg {1}/animation.gif'.format(\
                 os.getcwd()+"/"+self._session_manager.current_session.session_path,\
-                usb_path))
+                usb_path)
         else:
             print "please Insert USB Drive and Retry"
 
