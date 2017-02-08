@@ -130,7 +130,7 @@ class SpassoUno(object):
 
     def __make_video(self):
         if is_usb_plugged():
-            os.system('avconv -i {0}/frame-%d.jpg -filter:v "setpts=20.0*PTS" /media/usb0/video.mp4'.format(\
+            os.system('avconv -i {0}/frame_%d.jpg -filter:v "setpts=20.0*PTS" /media/usb0/video.mp4'.format(\
                 os.getcwd()+"/"+self._session_manager.current_session.session_path))
         else:
             print "please Insert USB Drive and Retry"
