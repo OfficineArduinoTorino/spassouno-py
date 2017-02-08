@@ -132,7 +132,7 @@ class SpassoUno(object):
         usb_path=find_usb_path()
         if not usb_path==None:
             os.system('convert -delay 100 {0}*.jpg {1}/video.mp4'.format(\
-                self._session_manager.current_session,\
+                os.getcwd()+"/"+self._session_manager.current_session.current_file.session_path,\
                 usb_path))
         else:
             print "please Insert USB Drive and Retry"
@@ -141,7 +141,7 @@ class SpassoUno(object):
         usb_path=find_usb_path()
         if not usb_path==None:
             os.system('convert -delay 100 -loop 0 {0}*.jpg {1}/animation.gif'.format(\
-                self._session_manager.current_session,\
+                os.getcwd()+"/"+self._session_manager.current_session.current_file.session_path,\
                 usb_path))
         else:
             print "please Insert USB Drive and Retry"
