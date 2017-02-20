@@ -32,7 +32,7 @@ class Camera(object):
         self._camera.hflip = False
         self._camera.vflip = False
 
-        self._screen_w = self._camera.resolution[0] / 2
+        self._screen_w = self._camera.resolution[0]
         self._screen_h = self._camera.resolution[1]
         self._camera.resolution = (self._screen_w, self._screen_h)
 
