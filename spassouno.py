@@ -132,13 +132,7 @@ class SpassoUno(object):
     def __make_video(self):
         if is_usb_plugged():
             path = os.getcwd()+"/"+self._session_manager.current_session.session_path
-            num = self._session_manager.current_session._img_count;
-            filenames=[path+"/frame_"+str(i+1)+".jpg" for i in range(num)]
-            with imageio.get_writer(os.getcwd()+"/animation.gif", mode='I') as writer:
-                for filename in filenames:
-                    image = imageio.imread(filename)
-                    writer.append_data(image)
-            os.system("avconv -i animation.gif /media/usb0/movie.avi")
+            os.system("convert -delay 20 -loop 0 "+path+"/*.jpg /media/usb0/movie.avi")
         else:
             print "please Insert USB Drive and Retry"
 
