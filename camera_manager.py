@@ -32,8 +32,9 @@ class Camera(object):
         self._camera.hflip = False
         self._camera.vflip = False
 
-        self._screen_w = self._camera.resolution[0]
-        self._screen_h = self._camera.resolution[1]
+        print self._camera.resolution
+        self._screen_w = self._camera.resolution[0] / 2
+        self._screen_h = self._camera.resolution[1] / 2
         self._camera.resolution = (self._screen_w, self._screen_h)
 
     def annotate_text(self, text):
@@ -42,7 +43,9 @@ class Camera(object):
     def start_preview(self):
         w = self._camera.resolution[0]
         h = self._camera.resolution[1]
-        self._camera.start_preview(fullscreen=False, window=(0, 0, w, h))
+        y = (1080-h)/2
+        x = 7
+        self._camera.start_preview(fullscreen=False, window=(x, y, w, h))
 
     def stop_preview(self):
         self._camera.stop_preview()
@@ -79,7 +82,7 @@ class Camera(object):
                 ((img.size[1] + 15) // 16) * 16,
             ))
 
-            pad.paste(img, (self._camera.resolution[0], 0))
+            pad.paste(img, (self._camera.resolution[0]-30, 0))
             source = pad.tobytes()
             if not self._overlay_rederer:
                 self._overlay_rederer = self._camera.add_overlay(pad.tobytes(), size=(self._camera.resolution[0] * 2,
