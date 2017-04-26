@@ -6,7 +6,7 @@
 
 Uno speciale tavolo da riprese per creare cortometraggi animati con la tecnica dell’animazione stop-motion. 
 
-(S)passoUno è basato su Python 2.7 e testato su Raspberry Pi 3 con distribuzione Minibian "Jessie".
+(S)passoUno è basato su Python 2.7 e testato su Raspberry Pi 3 con distribuzione Minibian "Jessie" con LXDE GUI.
 
 Componenti (S)passoUno:		
 - Raspberry Pi 3		
@@ -24,6 +24,8 @@ Componenti Interfaccia Kids:
 Scarica l'ultima versione del sistema operativo Minibian "Jessie": [minibianpi.wordpress.com/download](https://minibianpi.wordpress.com/download/)
 
 Per creare il sistema su microSD puoi seguire [questa procedura](https://minibianpi.wordpress.com/setup/).
+
+per installare l'ambiente grafico puoi seguire [questa guida](https://www.therryvanneerven.nl/how-to-install-raspbian-jessie-on-an-old-raspberry-pi.html)
 
 ##Installa (S)passoUno e le librerie necessarie
 
@@ -63,6 +65,10 @@ Installa la libreria libjpeg62:
 ```bash
 apt-get install libjpeg62-turbo-dev
 ```
+
+Installa la libreria pygame:
+```bash
+apt-get install python-pygame
 
 ```bash
 apt-get install libjpeg8-dev libjpeg-dev
