@@ -29,6 +29,12 @@ per installare l'ambiente grafico puoi seguire [questa guida](https://www.therry
 
 ##Installa (S)passoUno e le librerie necessarie
 
+Ottieni l'accesso come amministratore:
+```bash
+sudo su
+```
+inserisci come password: 'raspberry'
+
 Aggiorna l'indice dei pacchetti del sistema:
 ```bash
 apt-get update
@@ -66,13 +72,24 @@ Installa la libreria libjpeg62:
 apt-get install libjpeg62-turbo-dev
 ```
 
-Installa la libreria pygame:
-```bash
-apt-get install python-pygame
-
 ```bash
 apt-get install libjpeg8-dev libjpeg-dev
 ```
+
+Installa la libreria pygame:
+```bash
+apt-get install python-pygame
+```
+
+Installa la libreria imagemagick per salvare su usb e automount per montare le chiavette usb automaticamente:
+```bash
+apt-get install python-pygame
+```
+
+```bash
+apt-get install usbmount
+```
+
 In caso di errori, prova ad eseguire il comando come amministratore:  `sudo apt-get install libjpeg8-dev libjpeg-dev`
 
 Installa zlib1g:
