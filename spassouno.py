@@ -46,7 +46,7 @@ def check_hardware_buttons():
 	else:
 		hardware_space=False
 	
-	if pi.read(2)==1:
+	if pi.read(3)==1:
 		if not hardware_up:
 			NEXT_CRITICAL_ACTION="changetosession"+str(frameManager.current_session+1)
 			current_text_tag="cambio sessione"
@@ -54,7 +54,7 @@ def check_hardware_buttons():
 	else:
 		hardware_up=False
 
-	if pi.read(2)==1:
+	if pi.read(4)==1:
 		if not hardware_down:
 			NEXT_CRITICAL_ACTION="changetosession"+str(frameManager.current_session-1)
 			current_text_tag="cambio sessione"
@@ -62,7 +62,7 @@ def check_hardware_buttons():
 	else:
 		hardware_down=False
 
-	if pi.read(2)==1:
+	if pi.read(17)==1:
 		if not hardware_save:
 			NEXT_CRITICAL_ACTION="save"
 			current_text_tag="saving"
@@ -70,7 +70,7 @@ def check_hardware_buttons():
 	else:
 		hardware_save=False
 
-	if pi.read(2)==1:
+	if pi.read(27)==1:
 		if not hardware_delete:
 			frameManager.remove_frame()
 			current_text_tag="rimosso"
