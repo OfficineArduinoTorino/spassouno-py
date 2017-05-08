@@ -42,7 +42,7 @@ def check_hardware_buttons():
 		camera.save_frame(frameManager)
 		current_text_tag="scattato"
 		last_time_text=time.time()
-	'''
+	
 	elif pi.read(2)==1 and not hardware_up:
 		NEXT_CRITICAL_ACTION="changetosession"+str(frameManager.current_session+1)
 		current_text_tag="cambio sessione"
@@ -62,7 +62,7 @@ def check_hardware_buttons():
 		frameManager.remove_frame()
 		current_text_tag="rimosso"
 		last_time_text=time.time()
-	'''
+	
 	hardware_space=pi.read(2)
 	hardware_up=pi.read(3)
 	hardware_down=pi.read(4)
