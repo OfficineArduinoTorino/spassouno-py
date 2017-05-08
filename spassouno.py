@@ -7,9 +7,56 @@ from pygame.locals import *
 import time
 import os
 
+IS_RASPBERRY=True
+try:
+	GPIO.setmode(GPIO.BOARD)
+	hardware_keys={}
+	hardware_space=False;#gpio2
+	hardware_up=False;#gpio3
+	hardware_down=False;#gpio4
+	hardware_save=False;#gpio17
+	hardware_delete=False;#gpio27
+except:
+	IS_RASPBERRY=False
+
+def check_hardware_buttons():
+	global last_time_text,hardware_space,hardware_up,hardware_down,hardware_save,hardware_delete,current_text_tag,NEXT_CRITICAL_ACTION
+	if GPIO.input(2) and not hardware_space:
+		camera.save_frame(frameManager)
+		current_text_tag="scattato"
+		last_time_text=time.time()
+
+	elif GPIO.input(2) and not hardware_up:
+		NEXT_CRITICAL_ACTION="changetosession"+str(frameManager.current_session+1)
+		current_text_tag="cambio sessione"
+		last_time_text=time.time()
+
+	elif GPIO.input(2) and not hardware_down:
+		NEXT_CRITICAL_ACTION="changetosession"+str(frameManager.current_session-1)
+		current_text_tag="cambio sessione"
+		last_time_text=time.time()
+
+	elif GPIO.input(2) and not hardware_save:
+		NEXT_CRITICAL_ACTION="save"
+		current_text_tag="saving"
+		last_time_text=time.time()
+
+	elif GPIO.input(2) and not hardware_delete:
+		frameManager.remove_frame()
+		current_text_tag="rimosso"
+		last_time_text=time.time()
+
+	hardware_space=GPIO.input(2)
+	hardware_up=GPIO.input(3)
+	hardware_down=GPIO.input(4)
+	hardware_save=GPIO.input(17)
+	hardware_delete=GPIO.input(27)
+
 
 def keyboard_interaction():
 	global current_text_tag,last_time_text,animation_speed,NEXT_CRITICAL_ACTION
+	if IS_RASPBERRY:
+		check_hardware_buttons()
 	for event in pygame.event.get():
 			if event.type == pygame.KEYDOWN:
 				if event.key == pygame.K_ESCAPE:
@@ -99,6 +146,7 @@ NEXT_CRITICAL_ACTION=None
 current_text_tag="tutorial"
 
 image=camera.frame
+print image
 
 testi.load_text_it(frameManager,display.get_width())
 
