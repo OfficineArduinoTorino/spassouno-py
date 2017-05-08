@@ -57,11 +57,11 @@ def check_hardware_buttons():
 		current_text_tag="rimosso"
 		last_time_text=time.time()
 
-	hardware_space=GPIO.input(2)
-	hardware_up=GPIO.input(3)
-	hardware_down=GPIO.input(4)
-	hardware_save=GPIO.input(17)
-	hardware_delete=GPIO.input(27)
+	hardware_space=pi.read(2)
+	hardware_up=pi.read(3)
+	hardware_down=pi.read(4)
+	hardware_save=pi.read(17)
+	hardware_delete=pi.read(27)
 
 
 def keyboard_interaction():
