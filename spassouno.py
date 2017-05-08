@@ -9,10 +9,10 @@ import os
 
 
 IS_RASPBERRY=True
+pi=None
 try:
     import pigpio
-except RuntimeError:
-	print "Error importing RPi.GPIO!  This is probably because you need superuser privileges.  You can achieve this by using 'sudo' to run your script"
+except:
 	IS_RASPBERRY=False
 
 if IS_RASPBERRY:
@@ -31,28 +31,28 @@ if IS_RASPBERRY:
 	
 
 def check_hardware_buttons():
-	global last_time_text,hardware_space,hardware_up,hardware_down,hardware_save,hardware_delete,current_text_tag,NEXT_CRITICAL_ACTION
-	if GPIO.input(2) and not hardware_space:
+	global pi,last_time_text,hardware_space,hardware_up,hardware_down,hardware_save,hardware_delete,current_text_tag,NEXT_CRITICAL_ACTION
+	if pi.read(2)==1 and not hardware_space:
 		camera.save_frame(frameManager)
 		current_text_tag="scattato"
 		last_time_text=time.time()
 
-	elif GPIO.input(2) and not hardware_up:
+	elif pi.read(2)==1 and not hardware_up:
 		NEXT_CRITICAL_ACTION="changetosession"+str(frameManager.current_session+1)
 		current_text_tag="cambio sessione"
 		last_time_text=time.time()
 
-	elif GPIO.input(2) and not hardware_down:
+	elif pi.read(2)==1 and not hardware_down:
 		NEXT_CRITICAL_ACTION="changetosession"+str(frameManager.current_session-1)
 		current_text_tag="cambio sessione"
 		last_time_text=time.time()
 
-	elif GPIO.input(2) and not hardware_save:
+	elif pi.read(2)==1 and not hardware_save:
 		NEXT_CRITICAL_ACTION="save"
 		current_text_tag="saving"
 		last_time_text=time.time()
 
-	elif GPIO.input(2) and not hardware_delete:
+	elif pi.read(2)==1 and not hardware_delete:
 		frameManager.remove_frame()
 		current_text_tag="rimosso"
 		last_time_text=time.time()
