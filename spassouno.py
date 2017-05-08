@@ -22,6 +22,12 @@ if IS_RASPBERRY:
 	pi.set_mode(4, pigpio.INPUT)
 	pi.set_mode(17, pigpio.INPUT)
 	pi.set_mode(27, pigpio.INPUT)
+	#set pulldown resistors
+	pi.write(2, 0)
+	pi.write(3, 0)
+	pi.write(4, 0)
+	pi.write(17, 0)
+	pi.write(27, 0)
 	hardware_keys={}
 	hardware_space=False;#gpio2
 	hardware_up=False;#gpio3
