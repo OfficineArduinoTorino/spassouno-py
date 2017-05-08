@@ -38,36 +38,45 @@ if IS_RASPBERRY:
 
 def check_hardware_buttons():
 	global pi,last_time_text,hardware_space,hardware_up,hardware_down,hardware_save,hardware_delete,current_text_tag,NEXT_CRITICAL_ACTION
-	if pi.read(2)==1 and not hardware_space:
-		camera.save_frame(frameManager)
-		current_text_tag="scattato"
-		last_time_text=time.time()
+	if pi.read(2)==1:
+		if not hardware_space:
+			camera.save_frame(frameManager)
+			current_text_tag="scattato"
+			last_time_text=time.time()
+	else:
+		hardware_space=False
 	
-	elif pi.read(2)==1 and not hardware_up:
-		NEXT_CRITICAL_ACTION="changetosession"+str(frameManager.current_session+1)
-		current_text_tag="cambio sessione"
-		last_time_text=time.time()
+	if pi.read(2)==1:
+		if not hardware_up:
+			NEXT_CRITICAL_ACTION="changetosession"+str(frameManager.current_session+1)
+			current_text_tag="cambio sessione"
+			last_time_text=time.time()
+	else:
+		hardware_up=False
 
-	elif pi.read(2)==1 and not hardware_down:
-		NEXT_CRITICAL_ACTION="changetosession"+str(frameManager.current_session-1)
-		current_text_tag="cambio sessione"
-		last_time_text=time.time()
+	if pi.read(2)==1:
+		if not hardware_down:
+			NEXT_CRITICAL_ACTION="changetosession"+str(frameManager.current_session-1)
+			current_text_tag="cambio sessione"
+			last_time_text=time.time()
+	else:
+		hardware_down=False
 
-	elif pi.read(2)==1 and not hardware_save:
-		NEXT_CRITICAL_ACTION="save"
-		current_text_tag="saving"
-		last_time_text=time.time()
+	if pi.read(2)==1:
+		if not hardware_save:
+			NEXT_CRITICAL_ACTION="save"
+			current_text_tag="saving"
+			last_time_text=time.time()
+	else:
+		hardware_save=False
 
-	elif pi.read(2)==1 and not hardware_delete:
-		frameManager.remove_frame()
-		current_text_tag="rimosso"
-		last_time_text=time.time()
-	
-	hardware_space=pi.read(2)
-	hardware_up=pi.read(3)
-	hardware_down=pi.read(4)
-	hardware_save=pi.read(17)
-	hardware_delete=pi.read(27)
+	if pi.read(2)==1:
+		if not hardware_delete:
+			frameManager.remove_frame()
+			current_text_tag="rimosso"
+			last_time_text=time.time()
+	else:
+		hardware_delete=False
 
 
 def keyboard_interaction():
