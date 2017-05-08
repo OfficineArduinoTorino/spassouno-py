@@ -16,6 +16,11 @@ try:
 	hardware_down=False;#gpio4
 	hardware_save=False;#gpio17
 	hardware_delete=False;#gpio27
+	GPIO.setup(2, GPIO.IN)
+	GPIO.setup(3, GPIO.IN)
+	GPIO.setup(4, GPIO.IN)
+	GPIO.setup(17, GPIO.IN)
+	GPIO.setup(27, GPIO.IN)
 except:
 	IS_RASPBERRY=False
 
