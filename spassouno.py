@@ -17,11 +17,11 @@ except RuntimeError:
 
 if IS_RASPBERRY:
 	pi = pigpio.pi()
-	pigpio.set_mode(2, pigpio.INPUT)
-	pigpio.set_mode(3, pigpio.INPUT)
-	pigpio.set_mode(4, pigpio.INPUT)
-	pigpio.set_mode(17, pigpio.INPUT)
-	pigpio.set_mode(27, pigpio.INPUT)
+	pi.set_mode(2, pigpio.INPUT)
+	pi.set_mode(3, pigpio.INPUT)
+	pi.set_mode(4, pigpio.INPUT)
+	pi.set_mode(17, pigpio.INPUT)
+	pi.set_mode(27, pigpio.INPUT)
 	hardware_keys={}
 	hardware_space=False;#gpio2
 	hardware_up=False;#gpio3
