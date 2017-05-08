@@ -7,8 +7,15 @@ from pygame.locals import *
 import time
 import os
 
+
 IS_RASPBERRY=True
 try:
+    import RPi.GPIO as GPIO
+except RuntimeError:
+	print "Error importing RPi.GPIO!  This is probably because you need superuser privileges.  You can achieve this by using 'sudo' to run your script"
+	IS_RASPBERRY=False
+
+if IS_RASPBERRY:
 	GPIO.setmode(GPIO.BOARD)
 	hardware_keys={}
 	hardware_space=False;#gpio2
@@ -21,8 +28,6 @@ try:
 	GPIO.setup(4, GPIO.IN)
 	GPIO.setup(17, GPIO.IN)
 	GPIO.setup(27, GPIO.IN)
-except:
-	IS_RASPBERRY=False
 
 def check_hardware_buttons():
 	global last_time_text,hardware_space,hardware_up,hardware_down,hardware_save,hardware_delete,current_text_tag,NEXT_CRITICAL_ACTION
