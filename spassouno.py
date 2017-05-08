@@ -10,24 +10,25 @@ import os
 
 IS_RASPBERRY=True
 try:
-    import RPi.GPIO as GPIO
+    import pigpio
 except RuntimeError:
 	print "Error importing RPi.GPIO!  This is probably because you need superuser privileges.  You can achieve this by using 'sudo' to run your script"
 	IS_RASPBERRY=False
 
 if IS_RASPBERRY:
-	GPIO.setmode(GPIO.BOARD)
+	pi = pigpio.pi()
+	pigpio.set_mode(2, pigpio.INPUT)
+	pigpio.set_mode(3, pigpio.INPUT)
+	pigpio.set_mode(4, pigpio.INPUT)
+	pigpio.set_mode(17, pigpio.INPUT)
+	pigpio.set_mode(27, pigpio.INPUT)
 	hardware_keys={}
 	hardware_space=False;#gpio2
 	hardware_up=False;#gpio3
 	hardware_down=False;#gpio4
 	hardware_save=False;#gpio17
 	hardware_delete=False;#gpio27
-	GPIO.setup(2, GPIO.IN)
-	GPIO.setup(3, GPIO.IN)
-	GPIO.setup(4, GPIO.IN)
-	GPIO.setup(17, GPIO.IN)
-	GPIO.setup(27, GPIO.IN)
+	
 
 def check_hardware_buttons():
 	global last_time_text,hardware_space,hardware_up,hardware_down,hardware_save,hardware_delete,current_text_tag,NEXT_CRITICAL_ACTION
