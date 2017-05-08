@@ -43,6 +43,7 @@ def check_hardware_buttons():
 			camera.save_frame(frameManager)
 			current_text_tag="scattato"
 			last_time_text=time.time()
+			hardware_space=True
 	else:
 		hardware_space=False
 	
@@ -51,6 +52,7 @@ def check_hardware_buttons():
 			NEXT_CRITICAL_ACTION="changetosession"+str(frameManager.current_session+1)
 			current_text_tag="cambio sessione"
 			last_time_text=time.time()
+			hardware_up=True
 	else:
 		hardware_up=False
 
@@ -59,6 +61,7 @@ def check_hardware_buttons():
 			NEXT_CRITICAL_ACTION="changetosession"+str(frameManager.current_session-1)
 			current_text_tag="cambio sessione"
 			last_time_text=time.time()
+			hardware_down=True
 	else:
 		hardware_down=False
 
@@ -67,6 +70,7 @@ def check_hardware_buttons():
 			NEXT_CRITICAL_ACTION="save"
 			current_text_tag="saving"
 			last_time_text=time.time()
+			hardware_save=True
 	else:
 		hardware_save=False
 
@@ -75,6 +79,7 @@ def check_hardware_buttons():
 			frameManager.remove_frame()
 			current_text_tag="rimosso"
 			last_time_text=time.time()
+			hardware_delete=True
 	else:
 		hardware_delete=False
 
