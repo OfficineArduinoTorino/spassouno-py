@@ -63,6 +63,14 @@ Scarica il repository di (S)passoUno:
 ```bash
 git clone https://github.com/OfficineArduinoTorino/spassouno-py.git
 ```
+
+Imposta spasso uno in autoavvio
+'''bash
+sudo mv autostart.sh /etc/init.d/
+chmod +x /etc/init.d/autostart.sh 
+sudo update-rc.d autostart.sh defaults
+'''
+
 Installa Python:
 ```bash
 apt-get install python-pip python-dev
