@@ -152,10 +152,10 @@ def critical_action_manager():
 
 
 
-
-
 pygame.init()
-display = pygame.display.set_mode((1680,1050),pygame.FULLSCREEN)
+infoObject = pygame.display.Info()
+display=pygame.display.set_mode((infoObject.current_w, infoObject.current_h),pygame.FULLSCREEN)
+#display = pygame.display.set_mode((1680,1050),pygame.FULLSCREEN)
 #display = pygame.display.set_mode((640,480),pygame.FULLSCREEN)
 
 pygame.mouse.set_visible(False)
@@ -165,7 +165,7 @@ frame=pygame.surface.Surface((display.get_width()/2,display.get_height()/2), 0, 
 logo=pygame.image.load(os.path.join(os.path.dirname(os.path.realpath(__file__)),"logoSpassoUno.jpeg"))
 logo=pygame.transform.scale(logo,(display.get_width()/8,int(display.get_height()/7.5)))
 
-camera=Camera((display.get_width(),display.get_height()),display)
+camera=Camera((640,480),display)
 frameManager=FrameManager()
 
 last_time=time.time()
