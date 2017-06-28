@@ -6,7 +6,7 @@
 
 Uno speciale tavolo da riprese per creare cortometraggi animati con la tecnica dell’animazione stop-motion. 
 
-(S)passoUno è basato su Python 2.7 e testato su Raspberry Pi 3 con distribuzione Minibian "Jessie".
+(S)passoUno è basato su Python 2.7 e testato su Raspberry Pi 3 con distribuzione Minibian "Jessie" con LXDE GUI.
 
 Componenti (S)passoUno:		
 - Raspberry Pi 3		
@@ -25,7 +25,15 @@ Scarica l'ultima versione del sistema operativo Minibian "Jessie": [minibianpi.w
 
 Per creare il sistema su microSD puoi seguire [questa procedura](https://minibianpi.wordpress.com/setup/).
 
+per installare l'ambiente grafico puoi seguire [questa guida](https://www.therryvanneerven.nl/how-to-install-raspbian-jessie-on-an-old-raspberry-pi.html)
+
 ##Installa (S)passoUno e le librerie necessarie
+
+Ottieni l'accesso come amministratore:
+```bash
+sudo su
+```
+inserisci come password: 'raspberry'
 
 Aggiorna l'indice dei pacchetti del sistema:
 ```bash
@@ -55,6 +63,14 @@ Scarica il repository di (S)passoUno:
 ```bash
 git clone https://github.com/OfficineArduinoTorino/spassouno-py.git
 ```
+
+Imposta spasso uno in autoavvio
+'''bash
+sudo mv autostart.sh /etc/init.d/
+sudo chmod +x /etc/init.d/autostart.sh 
+sudo update-rc.d autostart.sh defaults
+'''
+
 Installa Python:
 ```bash
 apt-get install python-pip python-dev
@@ -67,6 +83,21 @@ apt-get install libjpeg62-turbo-dev
 ```bash
 apt-get install libjpeg8-dev libjpeg-dev
 ```
+
+Installa la libreria pygame:
+```bash
+apt-get install python-pygame
+```
+
+Installa la libreria imagemagick per salvare su usb e automount per montare le chiavette usb automaticamente:
+```bash
+apt-get install python-pygame
+```
+
+```bash
+apt-get install usbmount
+```
+
 In caso di errori, prova ad eseguire il comando come amministratore:  `sudo apt-get install libjpeg8-dev libjpeg-dev`
 
 Installa zlib1g:
