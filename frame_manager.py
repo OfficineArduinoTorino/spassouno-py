@@ -71,15 +71,17 @@ class FrameManager():
 			self.delete_current_scene()
 		self.current_session=0
 
-	def save(self):
+	def save(self,frate):
 		if len(self.images)==0:
 			return
 			
 		if self.is_usb_plugged():
 			path = self.get_current_session_path()
 			#os.system("convert -delay 20 -loop 0 "+path+"/*.jpeg /media/usb0/movie"+str(self.current_session)+".mpeg")
-			#gst-launch-1.0 multifilesrc location=timelapse%04d.jpeg index=1 caps="image/jpeg,framerate=24/1" ! jpegdec ! omxh264enc ! avimux ! filesink location=timelapse.avi
-			os.system("gst-launch-1.0 multifilesrc location="+path+"/frame_%05d.jpeg index=0 caps=\"image/jpeg,framerate=24/1\" ! jpegdec ! omxh264enc ! avimux ! filesink location=/media/usb0/movie"+str(self.current_session)+".avi")
+			#os.system("gst-launch-1.0 multifilesrc location="+path+"/frame_%05d.jpeg index=0 caps=\"image/jpeg,framerate=24/1\" ! jpegdec ! omxh264enc ! avimux ! filesink location=/media/usb0/movie"+str(self.current_session)+".avi")
+			framerate=int(1.0/frate)
+			os.system("gst-launch-1.0 multifilesrc location="+path+"/frame_%05d.jpeg ! \"image/jpeg,framerate="+str(framerate)+"/1\" ! jpegparse ! jpegdec ! omxh264enc ! avimux ! filesink location=/media/usb0/movie"+str(self.current_session)+".avi")
+			#os.system("gst-launch-1.0 multifilesrc location="+path+"/frame_%05d.jpeg ! \ caps=\"image/jpeg,framerate=1/"+str(frate)+",pixel-aspect-ratio=1/1\" ! jpegdec ! ffmpegcolorspace ! video/x-raw-yuv,format=(fourcc)l420 ! theoraenc ! oggmux ! filesink location=/media/usb0/movie"+str(self.current_session)+".ogg")
 			#os.system("gst-launch-1.0 multifilesrc location="+path+"/frame_%05d.jpeg index=0 caps=\"image/jpeg,framerate=24/1\" ! jpegdec ! omxh264enc ! avimux ! filesink location=timelapse.avi")
 		else:
 			print "please Insert USB Drive and Retry"

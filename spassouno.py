@@ -136,7 +136,7 @@ def keyboard_interaction():
 def critical_action_manager():
 	global NEXT_CRITICAL_ACTION,current_text_tag
 	if NEXT_CRITICAL_ACTION=="save":
-		ok=frameManager.save()
+		ok=frameManager.save(animation_speed)
 		if ok:
 			current_text_tag="salvato"
 		else:

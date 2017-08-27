@@ -2,6 +2,7 @@ import random
 import pygame.camera
 import os
 import io
+import time
 from PIL import Image
 class Camera():
 	def __init__(self,resolution,display):
@@ -14,6 +15,11 @@ class Camera():
 			self.is_picamera=True
 			self.camera=picamera.PiCamera()
 			self.camera.rotation = 270
+			self.camera.exposure_compensation=10
+			self.camera.exposure_mode="auto"
+			self.resolution=(1920,1080)
+			time.sleep(2)
+			self.camera.exposure_mode="off"
 		else:
 			self.camera = pygame.camera.Camera(camlist[0],self.resolution)
 			self.camera.start()
