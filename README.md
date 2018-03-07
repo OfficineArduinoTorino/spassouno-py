@@ -65,11 +65,11 @@ git clone https://github.com/OfficineArduinoTorino/spassouno-py.git
 ```
 
 Imposta spasso uno in autoavvio
-'''bash
+```bash
 sudo mv autostart.sh /etc/init.d/
 sudo chmod +x /etc/init.d/autostart.sh 
 sudo update-rc.d autostart.sh defaults
-'''
+```
 
 Installa Python:
 ```bash
