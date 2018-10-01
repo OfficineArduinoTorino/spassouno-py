@@ -1,4 +1,4 @@
-baseurl = "https://example.org/"
+baseurl = ""
 languageCode = "en-us"
 title = "Spasso Uno"
 theme = "hugo-creative-theme"
