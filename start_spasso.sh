@@ -1,3 +1,4 @@
 #!/bin/sh
-sudo pigpiod &
+cd /opt/spassouno-py/
 python /opt/spassouno-py/spassouno.py
+return

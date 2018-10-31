@@ -165,7 +165,7 @@ frame=pygame.surface.Surface((display.get_width()/2,display.get_height()/2), 0, 
 logo=pygame.image.load(os.path.join(os.path.dirname(os.path.realpath(__file__)),"logoSpassoUno.jpeg"))
 logo=pygame.transform.scale(logo,(display.get_width()/8,int(display.get_height()/7.5)))
 
-camera=Camera((640,480),display)
+camera=Camera((1920,1080),display)
 frameManager=FrameManager()
 
 last_time=time.time()
@@ -207,7 +207,7 @@ def draw_text():
 while True:
 	keyboard_interaction()
 
-	display.fill((0,100,255))
+	display.fill((0,0,0))
 
 	display.blit(logo,((display.get_width()-logo.get_width())/2,5))
 
