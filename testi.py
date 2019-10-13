@@ -9,7 +9,7 @@ de={}
 en={}
 
 font1={}
-font1["path"]=os.path.join(os.path.dirname(os.path.realpath(__file__)),"DKLemonYellowSun.otf")
+font1["path"]=os.path.join(os.path.dirname(os.path.realpath(__file__)),"Gotham-Medium.otf")
 
 colore_testi=pygame.Color(255,255,255)
 
@@ -86,16 +86,16 @@ def draw(screen,text,pos,horiz="left",vert="top",interlinea=1.0):
 
 def load_text_it(frame_manager,screen_width):
 	global font1, it, colore_testi
-	size=80*screen_width/1680
+	size=70*screen_width/1680
 
-	it["tutorial"]=create_text("Premi il Pulsante Rosso per scattare una foto!",font1,size,colore_testi)
-	it["scattato"]=create_text("BRAVO! hai appena scattato una foto!",font1,size,colore_testi)
-	it["cambio sessione"]=create_text("sto caricando un'altra sessione, attendi...",font1,size,colore_testi)
-	it["sessione cambiata"]=create_text("sei passato ad un'altra sessione",font1,size,colore_testi)
-	it["rimosso"]=create_text("hai rimosso una foto",font1,size,colore_testi)
-	it["saving"]=create_text("sto salvando, attendi...",font1,size,colore_testi)
-	it["salvato"]=create_text("il tuo lavoro è stato SALVATO!",font1,size,colore_testi)
-	it["no usb"]=create_text("inserisci una chiavetta usb per salvare!",font1,size,colore_testi)
+	it["tutorial"]=create_text("Premi il pulsante rosso per scattare una foto",font1,size,colore_testi)
+	it["scattato"]=create_text("Hai appena scattato una foto",font1,size,colore_testi)
+	it["cambio sessione"]=create_text("Sto caricando un'altra sessione, attendi...",font1,size,colore_testi)
+	it["sessione cambiata"]=create_text("Sei passato ad un'altra sessione",font1,size,colore_testi)
+	it["rimosso"]=create_text("Hai rimosso una foto",font1,size,colore_testi)
+	it["saving"]=create_text("Sto salvando, attendi...",font1,size,colore_testi)
+	it["salvato"]=create_text("Il tuo lavoro è stato salvato",font1,size,colore_testi)
+	it["no usb"]=create_text("Inserisci una chiavetta usb per salvare",font1,size,colore_testi)
 
 	for i in range(frame_manager.number_of_sessions):
 		it["session"+str(i)]=create_text("sessione "+str(i+1)+" di "+str(frame_manager.number_of_sessions),font1,size/2,colore_testi)

@@ -1,0 +1,57 @@
+@font-face {
+	font-family: 'gotham';
+	src: url('fonts/Gotham-Medium.otf');
+}
+body {
+	font-size:100%;
+	background-color: black;
+}
+h1 {
+	font-family: 'gotham',Arial,sans-serif;
+	font-size: 2.5em;
+	font-weight: normal;
+	font-style: normal;
+	color: white;
+	text-align: center;
+}
+
+h3 {
+	font-family: 'gotham',Arial,sans-serif;
+        font-size: 1em;
+        font-weight: normal;
+        font-style: normal;
+        color: white;
+	text-align:center;
+}
+a:link, a:visited {
+    background-color: white;
+    color: black;
+    font-family: 'gotham',Arial,sans-serif;
+    font-size: 0.9em;
+    font-weight: normal;
+    font-style: normal;
+    padding: 14px 14px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
+
+
+a:hover, a:active {
+    background-color: #d0d0d0;
+}
+ul {
+    list-style-type: none;
+    margin: 0em;
+    padding: 0em;
+    overflow: hidden;
+    width: 100%;
+    min-width:300px;
+}
+li {
+    display: inline;
+}
+.table {
+	display: table;
+	margin: 0 auto;
+}
